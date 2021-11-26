@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>$(StandardTfms);net461</TargetFrameworks>
+    <Version>$(Version)</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Iface\**" />
+    <EmbeddedResource Remove="Iface\**" />
+    <None Remove="Iface\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Rpc\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.17.3" />
+    <PackageReference Include="Grpc.Core" Version="2.38.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Anno.CronNET\Anno.CronNET.csproj" />
+    <ProjectReference Include="..\..\..\Anno.Log\Anno.Log.csproj" />
+    <Compile Include="..\..\Anno.Rpc.Client\Storage\*.cs" />
+    <Compile Include="..\..\Anno.Rpc.Client\StringHashCode.cs" />
+    <Compile Remove="..\..\Anno.Rpc.Client\Storage\StorageEngine.cs" />
+    <Compile Remove="..\..\Anno.Rpc.Client\Storage\KvStorageEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="..\..\Anno.Rpc.Client\Storage\AnnoData.cs" Link="Storage\AnnoData.cs" />
+    <Compile Update="..\..\Anno.Rpc.Client\Storage\AnnoDataResult.cs" Link="Storage\AnnoDataResult.cs" />
+    <Compile Update="..\..\Anno.Rpc.Client\Storage\AnnoKV.cs" Link="Storage\AnnoKV.cs" />
+    <Compile Update="..\..\Anno.Rpc.Client\Storage\CONST.cs" Link="Storage\CONST.cs" />
+    <Compile Update="..\..\Anno.Rpc.Client\Storage\StorageCommand.cs" Link="Storage\StorageCommand.cs" />
+  </ItemGroup>
+</Project>
